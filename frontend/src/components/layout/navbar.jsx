@@ -14,6 +14,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setScrolled(window.scrollY > 20)
 
     const handleScroll = () => {
@@ -47,7 +48,9 @@ export default function Navbar() {
               : ""
           }`}
         >
-          <div>Logo</div>
+          <Link href="/" passHref>
+            <div>Logo</div>
+          </Link>
 
           {/* Desktop menu */}
           <div className="hidden gap-x-2 sm:flex">
@@ -57,7 +60,7 @@ export default function Navbar() {
                 href={item.href}
                 className={`hover:text-foreground cursor-pointer rounded-full px-3 py-1.5 text-sm transition-all duration-300 hover:bg-gray-500/40 ${
                   pathname === item.href
-                    ? "bg-accent text-foreground"
+                    ? "dark:bg-white bg-black text-white dark:text-black"
                     : "bg-transparent text-gray-400"
                 }`}
               >
