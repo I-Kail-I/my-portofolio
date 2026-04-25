@@ -34,7 +34,9 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             <Navbar />
-            <main className="py-7.5">{children}</main>
+            <main className="w-full max-w-xl px-8 sm:px-0 mx-auto mt-15 py-10">
+              {children}
+            </main>
           </ThemeProvider>
         </body>
       </html>
