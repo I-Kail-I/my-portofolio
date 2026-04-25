@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import Navbar from "@/components/layout/navbar"
+import ClickSpark from "@/components/ui/click-spark"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({ children }) {
           >
             <Navbar />
             <main className="w-full max-w-xl px-8 sm:px-0 mx-auto mt-15 py-10">
-              {children}
+              <ClickSpark>
+                {children}
+              </ClickSpark>
             </main>
           </ThemeProvider>
         </body>
