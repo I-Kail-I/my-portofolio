@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             <Navbar />
-            {children}
+            <main className="py-7.5">{children}</main>
           </ThemeProvider>
         </body>
       </html>
