@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex h-15 items-center justify-center">
+      <nav className="flex h-15 items-center justify-center fixed top-0 w-full">
         <div className="flex w-full max-w-2xl items-center justify-between px-5">
           <div>Logo</div>
 
