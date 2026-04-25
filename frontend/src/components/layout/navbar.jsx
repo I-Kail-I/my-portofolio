@@ -14,6 +14,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    setScrolled(window.scrollY > 20)
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
@@ -33,9 +35,8 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        animate={{
-          top: scrolled ? 12 : 0,
-        }}
+        initial={false}
+        animate={{ top: scrolled ? 12 : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="fixed z-50 flex h-15 w-full items-center justify-center"
       >
@@ -56,7 +57,7 @@ export default function Navbar() {
                 href={item.href}
                 className={`hover:text-foreground cursor-pointer rounded-full px-3 py-1.5 text-sm transition-all duration-300 hover:bg-gray-500/40 ${
                   pathname === item.href
-                    ? "text-foreground bg-accent"
+                    ? "bg-accent text-foreground"
                     : "bg-transparent text-gray-400"
                 }`}
               >
@@ -127,7 +128,7 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={`block cursor-pointer rounded-xl px-4 py-2.5 text-sm transition-all duration-300 hover:bg-gray-500/40 hover:text-white ${
                       pathname === item.href
-                        ? "text-foreground bg-accent"
+                        ? "bg-accent text-foreground"
                         : "bg-transparent text-gray-400"
                     }`}
                   >
