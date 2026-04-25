@@ -57,25 +57,48 @@
 #   postgres_data:
 
 services:
+  # DATABASE 
+  postgres:
+    image: postgres:18-alpine
+    container_name: Database-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - ./backend/.env
+
   # BACKEND
   backend:
     build:
       context: ./backend
       target: dev
-    container_name: Backend
+    container_name: Backend-dev
     restart: unless-stopped
     ports:
       - "5000:5000"
     volumes:
       - ./backend:/app
       - /app/node_modules
+    depends_on:
+      - postgres
 
   # FRONTEND
   frontend:
     build:
       context: ./frontend
       target: dev
-    container_name: Frontend
+    container_name: Frontend-dev
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -85,3 +108,6 @@ services:
       - /app/.next
     depends_on:
       - backend
+
+volumes:
+  postgres_data:
