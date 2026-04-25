@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata = {
-  title: "",
+  title: "Mikail Arianos - Fullstack & DevOps Engineer",
+  description: "Mikail Arianos portofolio web, learaning about Mikail skills, projects, experiences and more.",
 }
 
 export default function RootLayout({ children }) {
