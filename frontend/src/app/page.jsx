@@ -86,122 +86,122 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Skills section */}
-        <div className="mt-8">
+      {/* Skills section */}
+      <section className="mt-8">
+        <h1 className="font-mono text-xl font-semibold tracking-tight">
+          Tech skills
+        </h1>
+        <div className="mt-4 grid grid-cols-3 gap-2 px-5 font-normal md:grid-cols-5">
+          {skillItems.map((skill, index) => (
+            <div
+              key={index}
+              className="flex cursor-default items-center justify-center gap-2 rounded p-2 text-sm text-gray-600 outline transition-all duration-150 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-800"
+            >
+              <img
+                src={`https://cdn.simpleicons.org/${skill.name.toLowerCase()}`}
+                alt={skill.name}
+                className="h-4 w-4"
+              />
+              <p>{skill.name}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recent projects section */}
+      <section className="mt-20">
+        <div className="flex w-full justify-between">
           <h1 className="font-mono text-xl font-semibold tracking-tight">
-            Tech skills
+            Recent projects
           </h1>
-          <div className="mt-4 grid grid-cols-3 gap-2 px-5 font-normal md:grid-cols-5">
-            {skillItems.map((skill, index) => (
-              <div
-                key={index}
-                className="flex cursor-default items-center justify-center gap-2 rounded p-2 text-sm text-gray-600 outline transition-all duration-150 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-800"
-              >
-                <img
-                  src={`https://cdn.simpleicons.org/${skill.name.toLowerCase()}`}
-                  alt={skill.name}
-                  className="h-4 w-4"
-                />
-                <p>{skill.name}</p>
-              </div>
-            ))}
-          </div>
+          <Link
+            href="/projects"
+            className="text-foreground underline decoration-dotted decoration-2 underline-offset-4"
+          >
+            See all
+          </Link>
+        </div>
 
-          {/* Recent projects section */}
-          <div className="mt-20">
-            <div className="flex w-full justify-between">
-              <h1 className="font-mono text-xl font-semibold tracking-tight">
-                Recent projects
-              </h1>
-              <Link
-                href="/projects"
-                className="text-foreground underline decoration-dotted decoration-2 underline-offset-4"
-              >
-                See all
-              </Link>
-            </div>
+        <div className="mt-5">
+          <Link href="/projects/example" passHref>
+            <Card className="bg-background hover:bg-muted-foreground/20 rounded-sm outline duration-200">
+              <CardHeader>
+                <time className="text-muted-foreground font-mono text-base font-medium">
+                  Date
+                </time>
+              </CardHeader>
+              <CardContent>
+                <CardTitle>
+                  <h1 className="text-foreground font-mono text-base font-medium">
+                    Project 1 - Quick summary
+                  </h1>
+                </CardTitle>
 
-            <div className="mt-5">
-              <Link href="/projects/example" passHref>
-                <Card className="bg-background hover:bg-muted-foreground/20 rounded-sm outline duration-200">
-                  <CardHeader>
-                    <h1 className="text-muted-foreground font-mono text-base font-medium">
-                      Date
-                    </h1>
-                  </CardHeader>
-                  <CardContent>
-                    <CardTitle>
-                      <h1 className="text-foreground font-mono text-base font-medium">
-                        Project 1 - Quick summary
-                      </h1>
-                    </CardTitle>
+                <CardDescription>
+                  <p className="text-muted-foreground">
+                    This is a description of the project.
+                  </p>
+                </CardDescription>
 
-                    <CardDescription>
-                      <p className="text-muted-foreground">
-                        This is a description of the project.
-                      </p>
-                    </CardDescription>
+                <div className="mt-2">
+                  <Badge className="mx-1 rounded-sm" variant="outline">
+                    WEB DEVELOPMENT
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
+      </section>
 
-                    <div className="mt-2">
-                      <Badge className="rounded-sm mx-1" variant="outline">
-                        WEB DEVELOPMENT
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </div>
+      {/* Recent posts section */}
+      <section className="mt-20">
+        <div className="flex w-full justify-between">
+          <h1 className="font-mono text-xl font-semibold tracking-tight">
+            Recent posts
+          </h1>
+          <Link
+            href="/posts"
+            className="text-foreground underline decoration-dotted decoration-2 underline-offset-4"
+          >
+            See all
+          </Link>
+        </div>
 
-          {/* Recent posts section */}
-          <div className="mt-20">
-            <div className="flex w-full justify-between">
-              <h1 className="font-mono text-xl font-semibold tracking-tight">
-                Recent posts
-              </h1>
-              <Link
-                href="/posts"
-                className="text-foreground underline decoration-dotted decoration-2 underline-offset-4"
-              >
-                See all
-              </Link>
-            </div>
+        <div className="mt-5">
+          <Link href="/posts/example" passHref>
+            <Card className="bg-background hover:bg-muted-foreground/20 rounded-sm outline duration-200">
+              <CardHeader>
+                <time className="text-muted-foreground font-mono text-base font-medium">
+                  Date
+                </time>
+              </CardHeader>
+              <CardContent>
+                <CardTitle>
+                  <h1 className="text-foreground font-mono text-base font-medium">
+                    POST 1 - Quick summary
+                  </h1>
+                </CardTitle>
 
-            <div className="mt-5">
-              <Link href="/posts/example" passHref>
-                <Card className="bg-background hover:bg-muted-foreground/20 rounded-sm outline duration-200">
-                  <CardHeader>
-                    <h1 className="text-muted-foreground font-mono text-base font-medium">
-                      Date
-                    </h1>
-                  </CardHeader>
-                  <CardContent>
-                    <CardTitle>
-                      <h1 className="text-foreground font-mono text-base font-medium">
-                        POST 1 - Quick summary
-                      </h1>
-                    </CardTitle>
+                <CardDescription>
+                  <p className="text-muted-foreground">
+                    This is a description of the project.
+                  </p>
+                </CardDescription>
 
-                    <CardDescription>
-                      <p className="text-muted-foreground">
-                        This is a description of the project.
-                      </p>
-                    </CardDescription>
-
-                    <div className="mt-2">
-                      <Badge className="rounded-sm mx-1" variant="outline">
-                        BACKEND
-                      </Badge>
-                      <Badge className="rounded-sm mx-1" variant="outline">
-                        Drizzle
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </div>
+                <div className="mt-2">
+                  <Badge className="mx-1 rounded-sm" variant="outline">
+                    BACKEND
+                  </Badge>
+                  <Badge className="mx-1 rounded-sm" variant="outline">
+                    Drizzle
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
       </section>
     </motion.div>
