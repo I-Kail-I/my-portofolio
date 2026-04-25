@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             <Navbar />
-            <main className="w-full max-w-xl px-8 sm:px-0 mx-auto mt-15 py-10">
+            <main className="w-full max-w-xl px-8 sm:px-0 mx-auto mt-15 py-10 min-h-screen">
               <ClickSpark>
                 {children}
               </ClickSpark>
