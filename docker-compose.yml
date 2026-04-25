@@ -1,45 +1,81 @@
-services:
-  # DATABASE
-  postgres:
-    image: postgres:18-alpine
-    container_name: database
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    env_file:
-      - ./backend/.env
+# Use this after I already configured the database or need the backend for now
 
+# services:
+#   # DATABASE
+#   postgres:
+#     image: postgres:18-alpine
+#     container_name: database
+#     restart: unless-stopped
+#     environment:
+#       POSTGRES_USER: ${DB_USER}
+#       POSTGRES_PASSWORD: ${DB_PASSWORD}
+#       POSTGRES_DB: ${DB_NAME}
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 5
+#     env_file:
+#       - ./backend/.env
+
+#   # BACKEND
+#   backend:
+#     build:
+#       context: ./backend
+#       target: dev
+#     container_name: backend
+#     restart: unless-stopped
+#     ports:
+#       - "5000:5000"
+#     volumes:
+#       - ./backend:/app
+#       - /app/node_modules
+#     depends_on:
+#       - postgres
+
+#   # FRONTEND
+#   frontend:
+#     build:
+#       context: ./frontend
+#       target: dev
+#     container_name: frontend
+#     restart: unless-stopped
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./frontend:/app
+#       - /app/node_modules
+#       - /app/.next
+#     depends_on:
+#       - backend
+
+# volumes:
+#   postgres_data:
+
+services:
   # BACKEND
   backend:
-    build: ./backend
-    target: dev
-    container_name: backend
+    build:
+      context: ./backend
+      target: dev
+    container_name: Backend
     restart: unless-stopped
     ports:
       - "5000:5000"
     volumes:
-      - backend:/app
-      - app/node_modules
-    depends_on:
-      - postgres
+      - ./backend:/app
+      - /app/node_modules
 
   # FRONTEND
   frontend:
     build:
       context: ./frontend
       target: dev
-    container_name: az-zahra-frontend-dev
+    container_name: Frontend
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -49,5 +85,3 @@ services:
       - /app/.next
     depends_on:
       - backend
-
-volumes: postgres_data
