@@ -46,6 +46,7 @@ export default function HomePage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="pb-20"
     >
       {/* Bio section */}
       <section>
@@ -214,7 +215,7 @@ export default function HomePage() {
           Reach out to me via email or social media.
         </p>
 
-        <div className="mt-2 grid w-full max-w-xs grid-cols-2 text-lg text-gray-700 dark:text-gray-400">
+        <div className="mt-2 grid w-full max-w-xs grid-cols-2 md:text-lg text-gray-700 dark:text-gray-400 text-sm">
           <p>Email</p>
           <a
             href="mailto:arianosmikail5@gmail.com"
