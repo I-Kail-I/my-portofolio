@@ -204,6 +204,42 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Contact section */}
+      <section className="mt-10">
+        <h1 className="font-mono text-xl font-semibold tracking-tight">
+          Let&apos;s connect
+        </h1>
+        <p className="text-muted-foreground">
+          Reach out to me via email or social media.
+        </p>
+
+        <div className="mt-2 grid w-full max-w-xs grid-cols-2 text-lg text-gray-700 dark:text-gray-400">
+          <p>Email</p>
+          <a
+            href="mailto:arianosmikail5@gmail.com"
+            className="hover:text-primary underline duration-100"
+          >
+            arianosmikail5@gmail.com
+          </a>
+
+          <p>Github</p>
+          <a
+            href="https://github.com/I-Kail-I"
+            className="hover:text-primary underline duration-100"
+          >
+            I-Kail-I
+          </a>
+
+          <p>LinkedIn</p>
+          <a
+            href="https://www.linkedin.com/in/mikail-arianos-30a268356"
+            className="hover:text-primary underline duration-100"
+          >
+            Mikail Arianos
+          </a>
+        </div>
+      </section>
     </motion.div>
   )
 }
