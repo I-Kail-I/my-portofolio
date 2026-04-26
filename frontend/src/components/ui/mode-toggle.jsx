@@ -18,7 +18,12 @@ export function ModeToggle({ className }) {
   // Prevent rendering the button until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
-      <Button variant="outline" size="icon" className="rounded-full" disabled />
+      <Button
+        variant="outline"
+        size="icon"
+        className="rounded-none border-amber-600/40 bg-transparent"
+        disabled
+      />
     )
   }
 
@@ -26,10 +31,10 @@ export function ModeToggle({ className }) {
     <Button
       variant="outline"
       size="icon"
-      className={`rounded-full scale-120 dark:text-gray-400 dark:hover:text-gray-200 text-gray-600 ${className}`}
+      className={`rounded-none border-amber-600/40 bg-transparent font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10 dark:hover:text-amber-400 ${className}`}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {theme === "dark" ? <Sun /> : <Moon />}
+      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>
   )
 }

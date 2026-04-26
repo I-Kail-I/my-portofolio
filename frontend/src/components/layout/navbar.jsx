@@ -49,35 +49,38 @@ export default function Navbar() {
           }`}
         >
           <Link href="/" passHref>
-            <div>Logo</div>
+            <div className="font-mono text-sm">
+              <span className="text-amber-600 dark:text-amber-400">~/portfolio $</span>
+              <span className="ml-1 text-gray-700 dark:text-gray-400">home</span>
+            </div>
           </Link>
 
           {/* Desktop menu */}
-          <div className="hidden gap-x-2 sm:flex">
+          <div className="hidden gap-x-1 sm:flex">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`hover:text-foreground cursor-pointer rounded-full px-3 py-1.5 text-sm transition-all duration-300 hover:bg-gray-500/40 ${
+                className={`retro-nav-btn blend cursor-pointer border border-transparent px-3 py-1.5 font-mono text-sm transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400 ${
                   pathname === item.href
-                    ? "dark:bg-white bg-black text-white dark:text-black"
-                    : "bg-transparent text-gray-400"
+                    ? "border-amber-500/50 bg-amber-500/10 text-amber-600 dark:border-amber-400/50 dark:text-amber-400"
+                    : "text-gray-500 dark:text-gray-400"
                 }`}
               >
-                {item.label}
+                &gt; {item.label.toLowerCase()}
               </Link>
             ))}
           </div>
 
           <div className="hidden sm:flex">
-            <ModeToggle />
+            <ModeToggle className="ms-3" />
           </div>
 
           {/* Mobile menu button */}
           <Button
             variant="outline"
             size="default"
-            className="flex cursor-pointer items-center justify-center rounded-full p-2 text-gray-400 transition-all duration-300 hover:bg-gray-500/40 hover:text-white sm:hidden"
+            className="flex cursor-pointer items-center justify-center rounded-none border-amber-600/40 p-2 font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10 sm:hidden"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -129,13 +132,13 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block cursor-pointer rounded-xl px-4 py-2.5 text-sm transition-all duration-300 hover:bg-gray-500/40 hover:text-white ${
+                    className={`retro-nav-btn block cursor-pointer border border-transparent px-4 py-2.5 font-mono text-sm transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400 ${
                       pathname === item.href
-                        ? "bg-accent text-foreground"
-                        : "bg-transparent text-gray-400"
+                        ? "border-amber-500/50 bg-amber-500/10 text-amber-600 dark:border-amber-400/50 dark:text-amber-400"
+                        : "text-gray-500 dark:text-gray-400"
                     }`}
                   >
-                    {item.label}
+                    &gt; {item.label.toLowerCase()}
                   </Link>
                 </motion.div>
               ))}
