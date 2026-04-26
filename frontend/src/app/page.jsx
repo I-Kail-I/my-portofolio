@@ -62,7 +62,7 @@ export default function HomePage() {
       <section>
         {/* Introductions */}
         <div className="flex w-full flex-col py-10">
-          <span className="retro-prompt mb-1 font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
+          <span className="mb-1 font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
             ~/portfolio $
           </span>
 
@@ -76,7 +76,7 @@ export default function HomePage() {
             </span>
           </h2>
 
-          <h1 className="text-foreground retro-glitch font-mono text-2xl font-semibold tracking-widest md:text-4xl">
+          <h1 className="text-foreground font-mono text-2xl font-semibold tracking-widest md:text-4xl">
             FULLSTACK & DEVOPS ENGINEER
           </h1>
 
@@ -85,7 +85,7 @@ export default function HomePage() {
             infrastructure systems.
           </p>
 
-          <article className="retro-scanline-text mt-4 max-w-2xl text-justify font-mono text-sm leading-relaxed text-gray-700 md:text-base dark:text-gray-400">
+          <article className="mt-4 max-w-2xl text-justify font-mono text-sm leading-relaxed text-gray-700 md:text-base dark:text-gray-400">
             Full-stack engineer with specialized expertise in DevOps and data
             management. Experienced in building and maintaining scalable
             applications using modern technologies. I leverage Docker,
@@ -114,7 +114,7 @@ export default function HomePage() {
       {/* Skills section */}
       <section className="mt-8">
         {/* Retro section header style */}
-        <h1 className="retro-section-title font-mono text-xl font-semibold tracking-tight">
+        <h1 className="font-mono text-xl font-semibold tracking-tight">
           <span className="text-amber-500 dark:text-amber-400">// </span>
           TECH_SKILLS
         </h1>

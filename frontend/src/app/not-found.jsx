@@ -13,11 +13,11 @@ export default function NotFound() {
       className="flex w-full flex-col items-center justify-center space-y-6 py-20"
     >
       <div className="text-center">
-        <span className="retro-prompt mb-2 block font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
+        <span className="mb-2 block font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
           ~/portfolio $ cat 404.txt
         </span>
 
-        <h1 className="retro-glitch font-mono text-6xl font-bold tracking-widest text-amber-600 dark:text-amber-400">
+        <h1 className="font-mono text-6xl font-bold tracking-widest text-amber-600 dark:text-amber-400">
           404
         </h1>
 
