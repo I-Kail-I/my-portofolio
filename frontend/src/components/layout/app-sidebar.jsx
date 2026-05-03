@@ -9,9 +9,17 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import { SidebarTrigger } from "@/components/ui/sidebar"
+import { usePathname } from "next/navigation"
+
+
 
 export default function AppSidebar() {
   const [isOpen, setIsOpen] = useState(true)
+  const pathname = usePathname()
+
+  if (pathname === "/admin") {
+    return null
+  }
 
   return (
     <>
@@ -25,7 +33,7 @@ export default function AppSidebar() {
       </Sidebar>
 
       <SidebarTrigger
-        className={`absolute top-4 left-4 z-10 transition-transform duration-350 cursor-pointer ${isOpen ? "translate-x-61" : "translate-x-0"}`}
+        className="bg-background"
         onClick={() => {
           setIsOpen(!isOpen)
         }}
