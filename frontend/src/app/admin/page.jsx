@@ -1,31 +1,80 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 "use client"
 
-import React from "react"
-import { motion } from "framer-motion"
+import React, { useState } from "react"
+import {
+  Card,
+  CardContent,
+  CardAction,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Eye, EyeClosed } from "lucide-react"
 
 export default function MainAdminPage() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="pb-20"
-    >
-      {/* Header */}
-      <div>
-        <h1 className="font-mono text-xl font-semibold tracking-tight">
-          <span className="text-amber-500 dark:text-amber-400">// </span>
-          ADMIN_PANEL
-        </h1>
-        <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
-      </div>
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
-      <div className="mt-10">
-        <p className="text-muted-foreground font-mono text-sm">
-          &gt; Admin dashboard content will be displayed here.
-        </p>
-      </div>
-    </motion.div>
+  return (
+    <div className="flex h-screen items-center justify-center bg-foreground">
+      <Card className="w-full max-w-md px-10 py-4 bg-accent">
+        {/* Card header */}
+        <CardHeader>
+          <CardTitle>
+            <h1 className="text-3xl font-semibold">Sign in to admin</h1>
+          </CardTitle>
+        </CardHeader>
+
+        <div className="flex w-full items-center">
+          <div className="w-1/3 border-t border-accent-foreground" />
+          <span className="px-2 text-sm text-muted-foreground">Not for public</span>
+          <div className="w-1/3 border-t border-accent-foreground" />
+        </div>
+
+        <CardContent className="mt-5">
+          {/* Card form inputs and submit button */}
+          <form className="space-y-4">
+            <div>
+              <label className="font-semibold" htmlFor="username">
+                Username
+              </label>
+              <Input
+                className="mt-2 p-5"
+                autoComplete="off"
+               type="text"
+                id="username"
+              />
+            </div>
+            <div>
+              <label className="font-semibold" htmlFor="password">
+                Password
+              </label>
+              <Input
+                className="mt-2 p-5 pe-9"
+                autoComplete="off"
+                type={isPasswordVisible ? "text" : "password"}
+                id="password"
+              />
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="absolute mt-3 -translate-x-10"
+              >
+                {isPasswordVisible ? <EyeClosed /> : <Eye />}
+              </Button>
+            </div>
+
+            <Button
+              className="mt-3 w-full cursor-pointer rounded-full py-6 hover:bg-gray-700 "
+              type="submit"
+              variant="default"
+            >
+              Submit
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
