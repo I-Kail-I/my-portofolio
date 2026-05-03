@@ -11,10 +11,7 @@ import {
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { usePathname } from "next/navigation"
 
-
-
 export default function AppSidebar() {
-  const [isOpen, setIsOpen] = useState(true)
   const pathname = usePathname()
 
   if (pathname === "/admin") {
@@ -32,12 +29,7 @@ export default function AppSidebar() {
         <SidebarFooter />
       </Sidebar>
 
-      <SidebarTrigger
-        className="bg-background"
-        onClick={() => {
-          setIsOpen(!isOpen)
-        }}
-      />
+      <SidebarTrigger />
     </>
   )
 }
