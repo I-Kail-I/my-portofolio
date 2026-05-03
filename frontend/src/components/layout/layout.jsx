@@ -8,6 +8,11 @@ import Footer from "@/components/layout/footer"
 import { usePathname } from "next/navigation"
 import AppSidebar from "@/components/layout/app-sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
+import { Noto_Sans } from "next/font/google"
+
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+})
 
 export default function Layout({ children }) {
   const pathname = usePathname()
@@ -22,7 +27,7 @@ export default function Layout({ children }) {
       >
         <SidebarProvider>
           <AppSidebar />
-          <main className="min-h-screen w-full">
+          <main className={`min-h-screen w-full ${notoSans.className}`}>
             <ClickSpark>{children}</ClickSpark>
           </main>
         </SidebarProvider>
