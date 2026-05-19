@@ -25,7 +25,9 @@ export default function CertificatesPage() {
       <div className="mt-10 space-y-10">
         <div className="retro-card border border-white/10 p-4 transition-all duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
           <div className="mb-2 flex items-center gap-2">
-            <span className="text-amber-600/70 dark:text-amber-400/70">&gt;</span>
+            <span className="text-amber-600/70 dark:text-amber-400/70">
+              &gt;
+            </span>
             <time className="text-muted-foreground font-mono text-sm font-medium tracking-widest">
               DATE: 2025-08 — 2026-01
             </time>

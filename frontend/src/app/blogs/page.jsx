@@ -32,7 +32,7 @@ export default function BlogsPage() {
 
       <div className="mt-10 space-y-6">
         <Link href="/blogs/example" passHref>
-          <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
+          <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 duration-200 outline-none hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
             <CardHeader className="pb-2">
               <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
                 &gt; DATE: 2024-01-01

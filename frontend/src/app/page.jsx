@@ -155,7 +155,7 @@ export default function HomePage() {
 
         <div className="mt-5">
           <Link href="/projects/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
+            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 duration-200 outline-none hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
               <CardHeader className="pb-2">
                 <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
                   &gt; DATE: 2024-01-01
@@ -206,7 +206,7 @@ export default function HomePage() {
 
         <div className="mt-5">
           <Link href="/posts/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
+            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 duration-200 outline-none hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
               <CardHeader className="pb-2">
                 <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
                   &gt; DATE: 2024-01-01
@@ -261,7 +261,7 @@ export default function HomePage() {
           <p className="text-amber-600/70 dark:text-amber-400/70">EMAIL</p>
           <a
             href="mailto:arianosmikail5@gmail.com"
-            className="hover:text-amber-500 underline decoration-dotted duration-100 dark:hover:text-amber-400"
+            className="underline decoration-dotted duration-100 hover:text-amber-500 dark:hover:text-amber-400"
           >
             arianosmikail5@gmail.com
           </a>
@@ -269,7 +269,7 @@ export default function HomePage() {
           <p className="text-amber-600/70 dark:text-amber-400/70">GITHUB</p>
           <a
             href="https://github.com/I-Kail-I"
-            className="hover:text-amber-500 underline decoration-dotted duration-100 dark:hover:text-amber-400"
+            className="underline decoration-dotted duration-100 hover:text-amber-500 dark:hover:text-amber-400"
           >
             I-Kail-I
           </a>
@@ -277,7 +277,7 @@ export default function HomePage() {
           <p className="text-amber-600/70 dark:text-amber-400/70">LINKEDIN</p>
           <a
             href="https://www.linkedin.com/in/mikail-arianos-30a268356"
-            className="hover:text-amber-500 underline decoration-dotted duration-100 dark:hover:text-amber-400"
+            className="underline decoration-dotted duration-100 hover:text-amber-500 dark:hover:text-amber-400"
           >
             Mikail Arianos
           </a>

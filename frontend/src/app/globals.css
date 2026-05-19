@@ -211,26 +211,38 @@ body::before {
 }
 
 .retro-card {
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
- 
+
 .retro-card:hover {
   animation: retro-flicker 0.08s ease-in-out;
 }
- 
+
 @keyframes retro-flicker {
-  0%   { opacity: 1; }
-  25%  { opacity: 0.92; }
-  50%  { opacity: 1; }
-  75%  { opacity: 0.96; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.96;
+  }
+  100% {
+    opacity: 1;
+  }
 }
- 
+
 .retro-nav-btn {
   position: relative;
   transition: all 0.15s ease;
 }
- 
+
 .retro-nav-btn::before {
   content: "";
   position: absolute;
@@ -243,15 +255,15 @@ body::before {
   transform-origin: bottom;
   transition: transform 0.15s ease;
 }
- 
+
 .retro-nav-btn:hover::before {
   transform: scaleY(1);
 }
- 
+
 .retro-skill-card {
   position: relative;
 }
- 
+
 .retro-skill-card::after {
   content: "·";
   position: absolute;
@@ -262,15 +274,14 @@ body::before {
   opacity: 0;
   transition: opacity 0.1s ease;
 }
- 
+
 .retro-skill-card:hover::after {
   opacity: 1;
 }
- 
+
 .dark .retro-section-title + div {
   box-shadow: 0 0 8px rgba(255, 176, 0, 0.15);
 }
-
 
 @layer base {
   * {

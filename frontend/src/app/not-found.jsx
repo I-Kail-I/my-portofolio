@@ -25,7 +25,8 @@ export default function NotFound() {
           &gt; ERROR: Page not found in filesystem.
         </p>
         <p className="text-muted-foreground mt-1 font-mono text-xs">
-          The resource you&apos;re looking for doesn&apos;t exist or has been moved.
+          The resource you&apos;re looking for doesn&apos;t exist or has been
+          moved.
         </p>
       </div>
 

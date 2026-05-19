@@ -50,8 +50,12 @@ export default function Navbar() {
         >
           <Link href="/" passHref>
             <div className="font-mono text-sm">
-              <span className="text-amber-600 dark:text-amber-400">~/portfolio $</span>
-              <span className="ml-1 text-gray-700 dark:text-gray-400">home</span>
+              <span className="text-amber-600 dark:text-amber-400">
+                ~/portfolio $
+              </span>
+              <span className="ml-1 text-gray-700 dark:text-gray-400">
+                home
+              </span>
             </div>
           </Link>
 
@@ -80,7 +84,7 @@ export default function Navbar() {
           <Button
             variant="outline"
             size="default"
-            className="flex cursor-pointer items-center justify-center rounded-none border-amber-600/40 p-2 font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10 sm:hidden"
+            className="flex cursor-pointer items-center justify-center rounded-none border-amber-600/40 p-2 font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 sm:hidden dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             <AnimatePresence mode="wait" initial={false}>

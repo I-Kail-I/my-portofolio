@@ -16,8 +16,8 @@ export default function MainAdminPage() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
   return (
-    <div className="flex h-screen items-center justify-center bg-foreground">
-      <Card className="w-full max-w-md px-10 py-4 bg-accent">
+    <div className="bg-foreground flex h-screen items-center justify-center">
+      <Card className="bg-accent w-full max-w-md px-10 py-4">
         {/* Card header */}
         <CardHeader>
           <CardTitle>
@@ -26,9 +26,11 @@ export default function MainAdminPage() {
         </CardHeader>
 
         <div className="flex w-full items-center">
-          <div className="w-1/3 border-t border-accent-foreground" />
-          <span className="px-2 text-sm text-muted-foreground">Not for public</span>
-          <div className="w-1/3 border-t border-accent-foreground" />
+          <div className="border-accent-foreground w-1/3 border-t" />
+          <span className="text-muted-foreground px-2 text-sm">
+            Not for public
+          </span>
+          <div className="border-accent-foreground w-1/3 border-t" />
         </div>
 
         <CardContent className="mt-5">
@@ -41,7 +43,7 @@ export default function MainAdminPage() {
               <Input
                 className="mt-2 p-5"
                 autoComplete="off"
-               type="text"
+                type="text"
                 id="username"
               />
             </div>
@@ -66,7 +68,7 @@ export default function MainAdminPage() {
             </div>
 
             <Button
-              className="mt-3 w-full cursor-pointer rounded-full py-6 hover:bg-gray-700 "
+              className="mt-3 w-full cursor-pointer rounded-full py-6 hover:bg-gray-700"
               type="submit"
               variant="default"
             >
