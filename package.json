@@ -2,6 +2,10 @@
   "name": "kodex-studio-web",
   "version": "1.0.0",
   "scripts": {
+    "dev": "docker compose --env-file .env.dev up -d",
+    "dev:build": "docker compose --env-file .env.dev build",
+    "start": "docker compose -f docker-compose.prod.yml --env-file .env.prod up -d",
+    "prod:build": "docker compose -f docker-compose.prod.yml --env-file build",
     "lint": "npm run lint:frontend && npm run lint:backend",
     "lint:frontend": "cd frontend && npm run lint",
     "lint:backend": "cd backend && npm run lint",

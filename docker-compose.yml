@@ -1,82 +1,24 @@
-# Use this after I already configured the database or need the backend for now
-
-# services:
-#   # DATABASE
-#   postgres:
-#     image: postgres:18-alpine
-#     container_name: database
-#     restart: unless-stopped
-#     environment:
-#       POSTGRES_USER: ${DB_USER}
-#       POSTGRES_PASSWORD: ${DB_PASSWORD}
-#       POSTGRES_DB: ${DB_NAME}
-#     ports:
-#       - "5432:5432"
-#     volumes:
-#       - postgres_data:/var/lib/postgresql/data
-#     healthcheck:
-#       test: ["CMD-SHELL", "pg_isready -U postgres"]
-#       interval: 5s
-#       timeout: 5s
-#       retries: 5
-#     env_file:
-#       - ./backend/.env
-
-#   # BACKEND
-#   backend:
-#     build:
-#       context: ./backend
-#       target: dev
-#     container_name: backend
-#     restart: unless-stopped
-#     ports:
-#       - "5000:5000"
-#     volumes:
-#       - ./backend:/app
-#       - /app/node_modules
-#     depends_on:
-#       - postgres
-
-#   # FRONTEND
-#   frontend:
-#     build:
-#       context: ./frontend
-#       target: dev
-#     container_name: frontend
-#     restart: unless-stopped
-#     ports:
-#       - "3000:3000"
-#     volumes:
-#       - ./frontend:/app
-#       - /app/node_modules
-#       - /app/.next
-#     depends_on:
-#       - backend
-
-# volumes:
-#   postgres_data:
-
 services:
   # DATABASE
   postgres:
-    image: postgres:18-alpine
+    image: postgres:17-alpine
     container_name: Database-dev
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: development_db_password
+      POSTGRES_DB: my_portofolio_mikail
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
       interval: 5s
       timeout: 5s
       retries: 5
     env_file:
-      - ./backend/.env
+      - .env.dev
 
   # BACKEND
   backend:
@@ -84,14 +26,13 @@ services:
       context: ./backend
       target: dev
     container_name: Backend-dev
-    restart: unless-stopped
     ports:
-      - "5000:5000"
+      - "8080:8080"
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
       - /app/node_modules
-    depends_on:
-      - postgres
+      - upload_folder:/app/uploads
+    env_file: ./backend/.env.dev
 
   # FRONTEND
   frontend:
@@ -111,3 +52,4 @@ services:
 
 volumes:
   postgres_data:
+  upload_folder:
