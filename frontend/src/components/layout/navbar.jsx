@@ -39,7 +39,7 @@ export default function Navbar() {
         initial={false}
         animate={{ top: scrolled ? 12 : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed z-50 flex h-15 w-full items-center justify-center"
+        className="h-15 fixed z-50 flex w-full items-center justify-center"
       >
         <div
           className={`flex w-full max-w-2xl items-center justify-between px-5 transition-all duration-300 ${
@@ -84,7 +84,7 @@ export default function Navbar() {
           <Button
             variant="outline"
             size="default"
-            className="flex cursor-pointer items-center justify-center rounded-none border-amber-600/40 p-2 font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 sm:hidden dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10"
+            className="flex cursor-pointer items-center justify-center rounded-none border-amber-600/40 p-2 font-mono text-amber-600 transition-all duration-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 dark:border-amber-400/40 dark:text-amber-400 dark:hover:bg-amber-400/10 sm:hidden"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -122,7 +122,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="bg-background fixed top-15 z-40 w-full sm:hidden"
+            className="bg-background top-15 fixed z-40 w-full sm:hidden"
           >
             <div className="flex flex-col gap-y-1 px-5 pb-4">
               {menuItems.map((item, index) => (

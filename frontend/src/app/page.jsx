@@ -66,7 +66,7 @@ export default function HomePage() {
             ~/portfolio $
           </span>
 
-          <h2 className="font-mono text-lg font-bold text-gray-500 md:text-3xl dark:text-gray-400">
+          <h2 className="font-mono text-lg font-bold text-gray-500 dark:text-gray-400 md:text-3xl">
             Mikail Arianos
             <span
               className="ml-1 inline-block font-mono text-amber-500 dark:text-amber-400"
@@ -80,12 +80,12 @@ export default function HomePage() {
             FULLSTACK & DEVOPS ENGINEER
           </h1>
 
-          <p className="mt-1 w-full max-w-sm font-mono text-sm text-amber-600/80 md:text-base dark:text-amber-400/80">
+          <p className="mt-1 w-full max-w-sm font-mono text-sm text-amber-600/80 dark:text-amber-400/80 md:text-base">
             Specialist in creating scalable web products and robust
             infrastructure systems.
           </p>
 
-          <article className="mt-4 max-w-2xl text-justify font-mono text-sm leading-relaxed text-gray-700 md:text-base dark:text-gray-400">
+          <article className="mt-4 max-w-2xl text-justify font-mono text-sm leading-relaxed text-gray-700 dark:text-gray-400 md:text-base">
             Full-stack engineer with specialized expertise in DevOps and data
             management. Experienced in building and maintaining scalable
             applications using modern technologies. I leverage Docker,
@@ -102,7 +102,7 @@ export default function HomePage() {
               <Link
                 key={index}
                 href={item.href}
-                className="retro-nav-btn blend truncate border border-amber-600/40 px-4 py-2 font-mono text-xs text-gray-700 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 md:text-sm lg:text-base dark:border-amber-400/30 dark:text-gray-400 dark:hover:border-amber-400 dark:hover:bg-amber-400/10 dark:hover:text-amber-300"
+                className="retro-nav-btn blend truncate border border-amber-600/40 px-4 py-2 font-mono text-xs text-gray-700 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-600 dark:border-amber-400/30 dark:text-gray-400 dark:hover:border-amber-400 dark:hover:bg-amber-400/10 dark:hover:text-amber-300 md:text-sm lg:text-base"
               >
                 &gt; {item.label}
               </Link>
@@ -155,7 +155,7 @@ export default function HomePage() {
 
         <div className="mt-5">
           <Link href="/projects/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 duration-200 outline-none hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
+            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
               <CardHeader className="pb-2">
                 <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
                   &gt; DATE: 2024-01-01
@@ -206,7 +206,7 @@ export default function HomePage() {
 
         <div className="mt-5">
           <Link href="/posts/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 duration-200 outline-none hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
+            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
               <CardHeader className="pb-2">
                 <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
                   &gt; DATE: 2024-01-01
@@ -257,7 +257,7 @@ export default function HomePage() {
           &gt; Reach out to me via email or social media.
         </p>
 
-        <div className="mt-4 grid w-full max-w-xs grid-cols-2 gap-y-2 font-mono text-sm text-gray-700 md:text-base dark:text-gray-400">
+        <div className="mt-4 grid w-full max-w-xs grid-cols-2 gap-y-2 font-mono text-sm text-gray-700 dark:text-gray-400 md:text-base">
           <p className="text-amber-600/70 dark:text-amber-400/70">EMAIL</p>
           <a
             href="mailto:arianosmikail5@gmail.com"

@@ -21,7 +21,7 @@ export default function ExperiencesPage() {
         <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
       </div>
 
-      <div className="mt-10 space-y-15">
+      <div className="space-y-15 mt-10">
         <div className="retro-card border border-white/10 p-4 transition-all duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
           <div className="mb-2 flex items-center gap-2">
             <span className="text-amber-600/70 dark:text-amber-400/70">

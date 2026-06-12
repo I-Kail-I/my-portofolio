@@ -42,7 +42,7 @@ export default function Layout({ children }) {
         disableTransitionOnChange
       >
         <Navbar />
-        <main className="mx-auto mt-15 min-h-screen w-full max-w-xl px-8 pb-10 sm:px-0">
+        <main className="mt-15 mx-auto min-h-screen w-full max-w-xl px-8 pb-10 sm:px-0">
           <ClickSpark>{children}</ClickSpark>
         </main>
         <Footer />

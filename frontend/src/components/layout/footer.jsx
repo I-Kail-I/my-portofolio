@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-amber-500/20 bg-white dark:bg-black">
       {/* Top row */}
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-30">
+      <div className="md:px-30 mx-auto flex max-w-5xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2 font-mono text-sm">
           <span className="text-amber-600 dark:text-amber-400">//</span>
@@ -56,7 +56,7 @@ export default function Footer() {
       <div className="border-t border-amber-500/20 dark:border-amber-400/20" />
 
       {/* Bottom row */}
-      <div className="mx-auto flex max-w-5xl flex-col-reverse gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-30">
+      <div className="md:px-30 mx-auto flex max-w-5xl flex-col-reverse gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between">
         <p className="font-mono text-sm text-gray-500 dark:text-gray-500">
           <span className="text-amber-600/70 dark:text-amber-400/70">&gt;</span>{" "}
           © 2026 | all_rights_reserved
