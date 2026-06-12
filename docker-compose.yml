@@ -25,7 +25,7 @@ services:
       target: dev
     container_name: Backend-dev
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       - ./backend:/app
       - /app/node_modules
