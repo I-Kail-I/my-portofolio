@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation"
 export default function AppSidebar() {
   const pathname = usePathname()
 
-  if (pathname === "/admin") {
+  if (pathname === "/admin/login") {
     return null
   }
 

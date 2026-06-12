@@ -2,9 +2,8 @@ node_modules
 .env
 .git
 .gitignore
-README.md
 docker-compose.yml
 .DS_Store
 *.log
-robot.txt
 build
+dist
