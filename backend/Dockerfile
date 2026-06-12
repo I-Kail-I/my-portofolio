@@ -2,23 +2,22 @@ FROM node:24-alpine as base
 
 WORKDIR /app
 
-# Development stage
+# DEVELOPMENT
 FROM base as dev
 COPY package*.json ./
 RUN npm ci
-COPY . ./
 CMD [ "npm", "run", "dev" ]
 
-# Builder stage
+# BUILDER STAGE
 FROM base as builder
 COPY package*.json ./
 RUN npm ci
 COPY . ./
 RUN npm run build
 
-# Production stage
+# PRODUCTION
 FROM base as prod
+COPY package*.json ./
+RUN npm ci --omit=dev
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
 CMD [ "npm", "start" ]

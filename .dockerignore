@@ -1,9 +1,27 @@
-node_modules
-.env
-.git
-.gitignore
-docker-compose.yml
-.DS_Store
-*.log
-build
+# Build files
 dist
+node_modules
+
+# Secrets
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pnpm-lock.yaml
+yarn.lock
+
+# IDE
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+
+# Test
+test-results/
