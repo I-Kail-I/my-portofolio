@@ -9,6 +9,16 @@ export const users = pgTable('users', {
   password: varchar({ length: 255 }).notNull(),
 });
 
+export const blogs = pgTable('blogs', {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  title: varchar({ length: 255 }).notNull(),
+  content: text().notNull().default(''),
+  coverImage: text(),
+  tags: text().array().notNull().default([]),
+  createdAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow(),
+});
+
 export const experiences = pgTable('experiences', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   title: varchar({ length: 255 }).notNull(),
