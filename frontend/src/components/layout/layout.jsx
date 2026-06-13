@@ -26,7 +26,7 @@ export default function Layout({ children }) {
       >
         <SidebarProvider>
           <AppSidebar />
-          <main className={`min-h-screen w-full ${notoSans.className}`}>
+          <main className={`min-h-screen w-full p-5 ${notoSans.className}`}>
             <ClickSpark>{children}</ClickSpark>
           </main>
         </SidebarProvider>

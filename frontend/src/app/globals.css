@@ -294,3 +294,9 @@ body::before {
     @apply font-sans;
   }
 }
+
+/* Sheet scrollable content */
+[data-slot="sheet-content"] {
+  display: flex;
+  flex-direction: column;
+}
