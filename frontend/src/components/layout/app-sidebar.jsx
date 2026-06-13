@@ -123,7 +123,7 @@ export default function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === item.href}
+                    isActive={pathname === item.href || pathname.startsWith(item.href + "/")}
                     className="justify-start"
                   >
                     <Link href={item.href}>
