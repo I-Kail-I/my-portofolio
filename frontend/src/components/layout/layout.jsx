@@ -16,7 +16,6 @@ const notoSans = Noto_Sans({
 
 export default function Layout({ children }) {
   const pathname = usePathname()
-
   if (pathname.startsWith("/admin")) {
     return (
       <ThemeProvider
@@ -31,6 +30,19 @@ export default function Layout({ children }) {
             <ClickSpark>{children}</ClickSpark>
           </main>
         </SidebarProvider>
+      </ThemeProvider>
+    )
+  } else if (pathname === "/login") {
+    return (
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <main className="mx-auto max-h-screen w-full max-w-xl px-8 pb-10 sm:px-0">
+          <ClickSpark>{children}</ClickSpark>
+        </main>
       </ThemeProvider>
     )
   } else {

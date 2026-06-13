@@ -50,7 +50,7 @@ export default function MainAdminPage() {
   }
 
   return (
-    <div className="bg-muted/50 flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="space-y-1 text-center">
           <div className="bg-primary/10 text-primary mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full">
