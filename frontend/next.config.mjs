@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:8000"
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -14,7 +16,7 @@ const nextConfig = {
     return [
       {
         source: "/api/v1/uploads/:path*",
-        destination: "http://localhost:8000/api/v1/uploads/:path*",
+        destination: `${backendUrl}/api/v1/uploads/:path*`,
       },
     ]
   },

@@ -38,6 +38,18 @@ export default function EditBlogPage() {
   const tags = watch("tags")
   const coverImage = watch("coverImage")
 
+  function addTag() {
+    const trimmed = tagInput.trim().toUpperCase()
+    if (trimmed && !tags.includes(trimmed)) {
+      setValue("tags", [...tags, trimmed])
+    }
+    setTagInput("")
+  }
+
+  function removeTag(tag) {
+    setValue("tags", tags.filter((t) => t !== tag))
+  }
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -60,18 +72,6 @@ export default function EditBlogPage() {
     fetchData()
   }, [params.id, reset, router])
 
-  function addTag() {
-    const trimmed = tagInput.trim().toUpperCase()
-    if (trimmed && !tags.includes(trimmed)) {
-      setValue("tags", [...tags, trimmed])
-    }
-    setTagInput("")
-  }
-
-  function removeTag(tag) {
-    setValue("tags", tags.filter((t) => t !== tag))
-  }
-
   async function onSubmit(data) {
     try {
       const id = Number(params.id)
@@ -85,7 +85,7 @@ export default function EditBlogPage() {
   if (loadingData) {
     return (
       <div className="flex items-center justify-center py-20">
-        <p className="font-mono text-sm text-muted-foreground">Loading...</p>
+        <p className="text-muted-foreground font-mono text-sm">Loading...</p>
       </div>
     )
   }
@@ -103,7 +103,10 @@ export default function EditBlogPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 rounded-lg border border-white/10 p-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-5 rounded-lg border border-white/10 p-6"
+      >
         <div className="space-y-2">
           <FormLabel required>TITLE</FormLabel>
           <Input
@@ -112,7 +115,9 @@ export default function EditBlogPage() {
             className="border-white/10 bg-transparent font-mono text-sm"
           />
           {errors.title && (
-            <p className="font-mono text-xs text-red-500">{errors.title.message}</p>
+            <p className="font-mono text-xs text-red-500">
+              {errors.title.message}
+            </p>
           )}
         </div>
 
@@ -139,7 +144,9 @@ export default function EditBlogPage() {
           <FormLabel>CONTENT (MARKDOWN)</FormLabel>
           <MarkdownEditor
             value={content}
-            onChange={(val) => setValue("content", val)}
+            onChange={(val) => {
+              setValue("content", val)
+            }}
           />
         </div>
 

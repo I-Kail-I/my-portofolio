@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown"
+import { getImageUrl } from "@/lib/utils"
 
 export const markdownComponents = {
   h1: ({ children }) => (
@@ -17,7 +18,9 @@ export const markdownComponents = {
     </h3>
   ),
   p: ({ children }) => (
-    <p className="mb-3 font-mono text-sm leading-relaxed last:mb-0">{children}</p>
+    <p className="mb-3 font-mono text-sm leading-relaxed last:mb-0">
+      {children}
+    </p>
   ),
   strong: ({ children }) => (
     <strong className="font-semibold text-amber-500">{children}</strong>
@@ -59,16 +62,18 @@ export const markdownComponents = {
     </a>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="mb-3 border-l-2 border-amber-500/50 pl-4 text-muted-foreground last:mb-0">
+    <blockquote className="text-muted-foreground mb-3 border-l-2 border-amber-500/50 pl-4 last:mb-0">
       {children}
     </blockquote>
   ),
   hr: () => <hr className="my-4 border-amber-500/20" />,
   img: ({ src, alt }) => (
-    <img src={src} alt={alt} className="my-3 max-h-96 w-full rounded-none border border-white/10 object-cover" />
+    <img src={getImageUrl(src)} alt={alt} className="my-3 max-h-96 w-full rounded-none border border-white/10 object-cover" />
   ),
 }
 
 export default function MarkdownPreview({ content }) {
-  return <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
+  return (
+    <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
+  )
 }

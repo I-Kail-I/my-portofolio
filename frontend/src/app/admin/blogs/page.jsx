@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import MarkdownPreview from "@/components/markdown-preview"
 import DataTable from "@/components/data-table"
 import { axiosInstance } from "@/lib/axios"
+import { getImageUrl } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
   Sheet,
@@ -59,8 +60,9 @@ export default function AdminBlogsPage() {
       sortable: false,
       render: (val) =>
         val ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={val}
+            src={getImageUrl(val)}
             alt="Cover"
             className="h-10 w-16 object-cover border border-white/10"
           />
@@ -161,7 +163,7 @@ export default function AdminBlogsPage() {
               <SheetHeader className="border-b border-white/10 pb-4">
                 {selected.coverImage && (
                   <img
-                    src={selected.coverImage}
+                    src={getImageUrl(selected.coverImage)}
                     alt={selected.title}
                     className="mb-2 h-40 w-full object-cover border border-white/10"
                   />

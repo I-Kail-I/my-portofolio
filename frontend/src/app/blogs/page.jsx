@@ -6,9 +6,11 @@ import SectionHeader from "@/components/section-header"
 import ContentModal from "@/components/content-modal"
 import MarkdownPreview from "@/components/markdown-preview"
 import { axiosInstance } from "@/lib/axios"
+import { getImageUrl } from "@/lib/utils"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState([])
@@ -49,15 +51,11 @@ export default function BlogsPage() {
                 onClick={() => setSelected(blog)}
                 className="bg-background hover:bg-muted-foreground/5 w-full cursor-pointer rounded-none border border-white/10 p-5 text-left outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50"
               >
-                {blog.coverImage && (
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    className="mb-3 h-40 w-full rounded-none border border-white/10 object-cover"
-                  />
-                )}
                 <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
-                  &gt; DATE: {blog.createdAt ? new Date(blog.createdAt).toISOString().split("T")[0] : "—"}
+                  &gt; DATE:{" "}
+                  {blog.createdAt
+                    ? new Date(blog.createdAt).toISOString().split("T")[0]
+                    : "—"}
                 </time>
                 <h2 className="font-mono text-base font-medium text-amber-600 dark:text-amber-400">
                   {blog.title}
@@ -83,9 +81,12 @@ export default function BlogsPage() {
         {selected && (
           <>
             {selected.coverImage && (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={selected.coverImage}
+                src={getImageUrl(selected.coverImage)}
                 alt={selected.title}
+                width={1200}
+                height={600}
                 className="mb-4 h-48 w-full rounded-none border border-white/10 object-cover"
               />
             )}
@@ -95,7 +96,9 @@ export default function BlogsPage() {
                 {selected.title}
               </h2>
               <span className="text-muted-foreground mt-1 block font-mono text-xs">
-                {selected.createdAt ? new Date(selected.createdAt).toLocaleDateString() : ""}
+                {selected.createdAt
+                  ? new Date(selected.createdAt).toLocaleDateString()
+                  : ""}
               </span>
               {selected.tags?.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1">

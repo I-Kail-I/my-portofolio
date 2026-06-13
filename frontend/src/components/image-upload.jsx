@@ -2,9 +2,9 @@
 
 import { useState, useRef } from "react"
 import { axiosInstance } from "@/lib/axios"
+import { getImageUrl } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ImagePlus, X, Loader2 } from "lucide-react"
-import Image from "next/image"
 
 export default function ImageUpload({ value, onChange }) {
   const [uploading, setUploading] = useState(false)
@@ -37,11 +37,9 @@ export default function ImageUpload({ value, onChange }) {
     <div className="space-y-2">
       {value ? (
         <div className="group relative overflow-hidden rounded-lg border border-white/10">
-          <Image
-            src={value}
+          <img
+            src={getImageUrl(value)}
             alt="Cover"
-            width={1000}
-            height={500}
             className="h-48 w-full object-cover"
           />
           <div className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100">
