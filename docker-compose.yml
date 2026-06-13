@@ -13,10 +13,33 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: Caching-Prod
+    restart: unless-stopped
+    command: redis-server --requirepass development_redis_password
+    environment:
+      REDIS_PASSWORD: development_redis_password
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   # BACKEND
   backend:
@@ -26,11 +49,16 @@ services:
     container_name: Backend-dev
     ports:
       - "8000:8000"
+      - "4983:4983"
     volumes:
       - ./backend:/app
-      - /app/node_modules
       - upload_folder:/app/uploads
     env_file: ./backend/.env.dev
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
   # FRONTEND
   frontend:
@@ -43,11 +71,11 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
-      - /app/.next
     depends_on:
       - backend
+    env_file: ./frontend/.env.dev
 
 volumes:
   postgres_data:
   upload_folder:
+  redis_data:
