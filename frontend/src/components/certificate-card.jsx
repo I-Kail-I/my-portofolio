@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function CertificateCard({ date, title, description, imageUrl, imageAlt }) {
   return (
     <div className="retro-card border border-white/10 p-4 transition-all duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
@@ -17,6 +19,7 @@ export default function CertificateCard({ date, title, description, imageUrl, im
         </p>
 
         {imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imageUrl}
             alt={imageAlt || title}
