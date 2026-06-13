@@ -64,6 +64,9 @@ export const markdownComponents = {
     </blockquote>
   ),
   hr: () => <hr className="my-4 border-amber-500/20" />,
+  img: ({ src, alt }) => (
+    <img src={src} alt={alt} className="my-3 max-h-96 w-full rounded-none border border-white/10 object-cover" />
+  ),
 }
 
 export default function MarkdownPreview({ content }) {
