@@ -12,6 +12,7 @@ CMD ["npm", "run", "dev"]
 
 # BUILD STAGE
 FROM base AS builder
+USER root
 COPY package*.json ./
 RUN npm install
 COPY . .
@@ -26,4 +27,5 @@ COPY --from=builder /app/public ./public
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 EXPOSE 3000
+USER node
 CMD ["npm", "start"]
