@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react"
 import { useRouter, useParams } from "next/navigation"
 import { useForm } from "react-hook-form"
+import BackButton from "@/components/back-button"
+import FormLabel from "@/components/form-label"
+import TagInput from "@/components/tag-input"
 import { Button } from "@/components/ui/button"
 import MarkdownEditor from "@/components/markdown-editor"
 import { Input } from "@/components/ui/input"
 import ImageUpload from "@/components/image-upload"
 import { axiosInstance } from "@/lib/axios"
-import { ArrowLeft, X } from "lucide-react"
-import Link from "next/link"
 
 export default function EditBlogPage() {
   const router = useRouter()
@@ -92,15 +93,10 @@ export default function EditBlogPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Link
-          href="/admin/blogs"
-          className="rounded-lg border border-white/10 p-1.5 transition-colors hover:border-amber-500/50 hover:text-amber-500"
-        >
-          <ArrowLeft className="h-4 w-4" />
-        </Link>
+        <BackButton href="/admin/blogs" />
         <div>
           <h1 className="font-mono text-xl font-semibold tracking-tight">
-            <span className="text-amber-500 dark:text-amber-400">// </span>
+            <span className="text-amber-500 dark:text-amber-400">{"// "}</span>
             EDIT BLOG
           </h1>
           <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
@@ -109,9 +105,7 @@ export default function EditBlogPage() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 rounded-lg border border-white/10 p-6">
         <div className="space-y-2">
-          <label className="font-mono text-xs font-medium text-amber-600 dark:text-amber-400">
-            TITLE *
-          </label>
+          <FormLabel required>TITLE</FormLabel>
           <Input
             placeholder="Blog post title"
             {...register("title", { required: "Title is required" })}
@@ -123,9 +117,7 @@ export default function EditBlogPage() {
         </div>
 
         <div className="space-y-2">
-          <label className="font-mono text-xs font-medium text-amber-600 dark:text-amber-400">
-            COVER IMAGE
-          </label>
+          <FormLabel>COVER IMAGE</FormLabel>
           <ImageUpload
             value={coverImage}
             onChange={(url) => setValue("coverImage", url)}
@@ -133,42 +125,18 @@ export default function EditBlogPage() {
         </div>
 
         <div className="space-y-2">
-          <label className="font-mono text-xs font-medium text-amber-600 dark:text-amber-400">
-            TAGS
-          </label>
-          <div className="flex items-center gap-2">
-            <Input
-              placeholder="Add a tag"
-              value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
-              className="border-white/10 bg-transparent font-mono text-sm"
-            />
-            <Button type="button" onClick={addTag} variant="outline" size="sm">
-              Add
-            </Button>
-          </div>
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="flex items-center gap-1 rounded border border-amber-500/40 px-2 py-0.5 font-mono text-[10px] text-amber-600 dark:text-amber-400"
-                >
-                  {tag}
-                  <button type="button" onClick={() => removeTag(tag)} className="hover:text-red-500">
-                    <X className="h-3 w-3" />
-                  </button>
-                </span>
-              ))}
-            </div>
-          )}
+          <FormLabel>TAGS</FormLabel>
+          <TagInput
+            tags={tags}
+            tagInput={tagInput}
+            setTagInput={setTagInput}
+            onAdd={addTag}
+            onRemove={removeTag}
+          />
         </div>
 
         <div className="space-y-2">
-          <label className="font-mono text-xs font-medium text-amber-600 dark:text-amber-400">
-            CONTENT (MARKDOWN)
-          </label>
+          <FormLabel>CONTENT (MARKDOWN)</FormLabel>
           <MarkdownEditor
             value={content}
             onChange={(val) => setValue("content", val)}

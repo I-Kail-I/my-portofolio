@@ -1,19 +1,10 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
-import { ModeToggle } from "@/components/ui/mode-toggle"
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import PageWrapper from "@/components/page-wrapper"
+import SectionHeader from "@/components/section-header"
+import ItemCard from "@/components/item-card"
 
 export default function HomePage() {
   const [cursorVisible, setCursorVisible] = useState(true)
@@ -52,15 +43,9 @@ export default function HomePage() {
   ]
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="pb-20"
-    >
+    <PageWrapper>
       {/* Bio section */}
       <section>
-        {/* Introductions */}
         <div className="flex w-full flex-col py-10">
           <span className="mb-1 font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
             ~/portfolio $
@@ -113,11 +98,7 @@ export default function HomePage() {
 
       {/* Skills section */}
       <section className="mt-8">
-        {/* Retro section header style */}
-        <h1 className="font-mono text-xl font-semibold tracking-tight">
-          <span className="text-amber-500 dark:text-amber-400">// </span>
-          TECH_SKILLS
-        </h1>
+        <SectionHeader title="TECH_SKILLS" />
         <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
 
         <div className="mt-4 grid grid-cols-3 gap-2 px-5 font-normal md:grid-cols-5">
@@ -139,118 +120,39 @@ export default function HomePage() {
 
       {/* Recent projects section */}
       <section className="mt-20">
-        <div className="flex w-full justify-between">
-          <h1 className="font-mono text-xl font-semibold tracking-tight">
-            <span className="text-amber-500 dark:text-amber-400">// </span>
-            RECENT_PROJECTS
-          </h1>
-          <Link
-            href="/projects"
-            className="font-mono text-sm text-amber-600 underline decoration-dotted decoration-2 underline-offset-4 hover:text-amber-500 dark:text-amber-400 dark:hover:text-amber-300"
-          >
-            [ see all ]
-          </Link>
-        </div>
+        <SectionHeader title="RECENT_PROJECTS" href="/projects" />
         <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
 
         <div className="mt-5">
-          <Link href="/projects/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
-              <CardHeader className="pb-2">
-                <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
-                  &gt; DATE: 2024-01-01
-                </time>
-              </CardHeader>
-              <CardContent>
-                <CardTitle>
-                  <h1 className="font-mono text-base font-medium text-amber-600 dark:text-amber-400">
-                    Project 1 - Quick summary
-                  </h1>
-                </CardTitle>
-
-                <CardDescription>
-                  <p className="text-muted-foreground mt-1 font-mono text-sm">
-                    This is a description of the project.
-                  </p>
-                </CardDescription>
-
-                <div className="mt-2">
-                  <Badge
-                    className="mx-1 rounded-none border-amber-500/40 font-mono text-xs text-amber-600 dark:border-amber-400/40 dark:text-amber-400"
-                    variant="outline"
-                  >
-                    WEB DEVELOPMENT
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+          <ItemCard
+            href="/projects/example"
+            date="2024-01-01"
+            title="Project 1 - Quick summary"
+            description="This is a description of the project."
+            tags={["WEB DEVELOPMENT"]}
+          />
         </div>
       </section>
 
       {/* Recent posts section */}
       <section className="mt-20">
-        <div className="flex w-full justify-between">
-          <h1 className="font-mono text-xl font-semibold tracking-tight">
-            <span className="text-amber-500 dark:text-amber-400">// </span>
-            RECENT_POSTS
-          </h1>
-          <Link
-            href="/posts"
-            className="font-mono text-sm text-amber-600 underline decoration-dotted decoration-2 underline-offset-4 hover:text-amber-500 dark:text-amber-400 dark:hover:text-amber-300"
-          >
-            [ see all ]
-          </Link>
-        </div>
+        <SectionHeader title="RECENT_POSTS" href="/posts" />
         <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
 
         <div className="mt-5">
-          <Link href="/posts/example" passHref>
-            <Card className="retro-card bg-background hover:bg-muted-foreground/5 rounded-none border border-white/10 outline-none duration-200 hover:border-amber-500/50 dark:border-white/5 dark:hover:border-amber-400/50">
-              <CardHeader className="pb-2">
-                <time className="text-muted-foreground font-mono text-xs font-medium tracking-widest">
-                  &gt; DATE: 2024-01-01
-                </time>
-              </CardHeader>
-              <CardContent>
-                <CardTitle>
-                  <h1 className="font-mono text-base font-medium text-amber-600 dark:text-amber-400">
-                    POST 1 - Quick summary
-                  </h1>
-                </CardTitle>
-
-                <CardDescription>
-                  <p className="text-muted-foreground mt-1 font-mono text-sm">
-                    This is a description of the project.
-                  </p>
-                </CardDescription>
-
-                <div className="mt-2">
-                  <Badge
-                    className="mx-1 rounded-none border-amber-500/40 font-mono text-xs text-amber-600 dark:border-amber-400/40 dark:text-amber-400"
-                    variant="outline"
-                  >
-                    BACKEND
-                  </Badge>
-                  <Badge
-                    className="mx-1 rounded-none border-amber-500/40 font-mono text-xs text-amber-600 dark:border-amber-400/40 dark:text-amber-400"
-                    variant="outline"
-                  >
-                    Drizzle
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+          <ItemCard
+            href="/posts/example"
+            date="2024-01-01"
+            title="POST 1 - Quick summary"
+            description="This is a description of the project."
+            tags={["BACKEND", "Drizzle"]}
+          />
         </div>
       </section>
 
       {/* Contact section */}
       <section className="mt-10">
-        <h1 className="font-mono text-xl font-semibold tracking-tight">
-          <span className="text-amber-500 dark:text-amber-400">// </span>
-          LET&apos;S_CONNECT
-        </h1>
+        <SectionHeader title="LET'S_CONNECT" />
         <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
 
         <p className="text-muted-foreground mt-2 font-mono text-sm">
@@ -283,6 +185,6 @@ export default function HomePage() {
           </a>
         </div>
       </section>
-    </motion.div>
+    </PageWrapper>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import MarkdownPreview from "@/components/markdown-preview"
 import DataTable from "@/components/data-table"
@@ -30,27 +30,27 @@ export default function AdminBlogsPage() {
     totalPages: 1,
   })
 
-  const fetchBlogs = useCallback(async () => {
-    setLoading(true)
-    try {
-      const params = { page: currentPage, pageSize: 5 }
-      if (searchTerm) params.search = searchTerm
-      if (sortField) params.sortField = sortField
-      params.sortOrder = sortOrder
-
-      const { data } = await axiosInstance.get("/blogs", { params })
-      setBlogs(data.data)
-      setPagination(data.pagination)
-    } catch (error) {
-      console.error("Failed to fetch blogs:", error)
-    } finally {
-      setLoading(false)
-    }
-  }, [searchTerm, sortField, sortOrder, currentPage])
-
   useEffect(() => {
+    async function fetchBlogs() {
+      setLoading(true)
+      try {
+        const params = { page: currentPage, pageSize: 5 }
+        if (searchTerm) params.search = searchTerm
+        if (sortField) params.sortField = sortField
+        params.sortOrder = sortOrder
+
+        const { data } = await axiosInstance.get("/blogs", { params })
+        setBlogs(data.data)
+        setPagination(data.pagination)
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
     fetchBlogs()
-  }, [fetchBlogs])
+  }, [searchTerm, sortField, sortOrder, currentPage])
 
   const columns = [
     {

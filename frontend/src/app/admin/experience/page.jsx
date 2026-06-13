@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import MarkdownPreview from "@/components/markdown-preview"
 import DataTable from "@/components/data-table"
@@ -29,27 +29,27 @@ export default function AdminExperiencePage() {
     totalPages: 1,
   })
 
-  const fetchExperiences = useCallback(async () => {
-    setLoading(true)
-    try {
-      const params = { page: currentPage, pageSize: 5 }
-      if (searchTerm) params.search = searchTerm
-      if (sortField) params.sortField = sortField
-      params.sortOrder = sortOrder
-
-      const { data } = await axiosInstance.get("/experiences", { params })
-      setExperiences(data.data)
-      setPagination(data.pagination)
-    } catch (error) {
-      console.error("Failed to fetch experiences:", error)
-    } finally {
-      setLoading(false)
-    }
-  }, [searchTerm, sortField, sortOrder, currentPage])
-
   useEffect(() => {
+    async function fetchExperiences() {
+      setLoading(true)
+      try {
+        const params = { page: currentPage, pageSize: 5 }
+        if (searchTerm) params.search = searchTerm
+        if (sortField) params.sortField = sortField
+        params.sortOrder = sortOrder
+
+        const { data } = await axiosInstance.get("/experiences", { params })
+        setExperiences(data.data)
+        setPagination(data.pagination)
+      } catch (error) {
+        console.error("Failed to fetch experiences:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
     fetchExperiences()
-  }, [fetchExperiences])
+  }, [searchTerm, sortField, sortOrder, currentPage])
 
   const columns = [
     {

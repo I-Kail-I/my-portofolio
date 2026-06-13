@@ -2,7 +2,9 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
+});
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,

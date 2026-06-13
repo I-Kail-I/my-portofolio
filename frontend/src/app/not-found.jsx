@@ -1,17 +1,12 @@
 "use client"
 
 import React from "react"
-import { motion } from "framer-motion"
+import PageWrapper from "@/components/page-wrapper"
 import Link from "next/link"
 
 export default function NotFound() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex w-full flex-col items-center justify-center space-y-6 py-20"
-    >
+    <PageWrapper className="flex flex-col items-center justify-center py-20">
       <div className="text-center">
         <span className="mb-2 block font-mono text-xs text-amber-500/70 dark:text-amber-400/70">
           ~/portfolio $ cat 404.txt
@@ -38,6 +33,6 @@ export default function NotFound() {
       >
         &gt; RETURN_HOME
       </Link>
-    </motion.div>
+    </PageWrapper>
   )
 }

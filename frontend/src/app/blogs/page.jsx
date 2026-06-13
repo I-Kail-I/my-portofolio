@@ -1,13 +1,14 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import PageWrapper from "@/components/page-wrapper"
+import SectionHeader from "@/components/section-header"
+import ContentModal from "@/components/content-modal"
 import MarkdownPreview from "@/components/markdown-preview"
 import { axiosInstance } from "@/lib/axios"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Badge } from "@/components/ui/badge"
-import { X } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState([])
@@ -31,19 +32,9 @@ export default function BlogsPage() {
   }, [])
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="pb-20"
-    >
-      <div>
-        <h1 className="font-mono text-xl font-semibold tracking-tight">
-          <span className="text-amber-500 dark:text-amber-400">// </span>
-          BLOGS
-        </h1>
-        <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
-      </div>
+    <PageWrapper>
+      <SectionHeader title="BLOGS" />
+      <div className="mt-1 h-px w-full bg-amber-500/20 dark:bg-amber-400/20" />
 
       <div className="mt-10 space-y-6">
         {loading
@@ -88,28 +79,9 @@ export default function BlogsPage() {
             ))}
       </div>
 
-      {selected && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => setSelected(null)}
-          className="bg-background/70 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-        >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.2 }}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-card relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-lg border border-white/10 p-6 shadow-lg"
-          >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute right-3 top-3 rounded-lg border border-white/10 p-1.5 transition-colors hover:border-amber-500/50 hover:text-amber-500"
-            >
-              <X className="h-4 w-4" />
-            </button>
-
+      <ContentModal open={!!selected} onClose={() => setSelected(null)}>
+        {selected && (
+          <>
             {selected.coverImage && (
               <img
                 src={selected.coverImage}
@@ -141,9 +113,9 @@ export default function BlogsPage() {
             </div>
 
             <MarkdownPreview content={selected.content} />
-          </motion.div>
-        </motion.div>
-      )}
-    </motion.div>
+          </>
+        )}
+      </ContentModal>
+    </PageWrapper>
   )
 }

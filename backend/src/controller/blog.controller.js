@@ -1,20 +1,12 @@
 import { db } from '../db/db.js';
 import { blogs } from '../db/schema.js';
 import { eq, like, asc, desc, count, sql } from 'drizzle-orm';
+import { parsePagination, buildPaginationResponse } from '../utils/pagination.js';
+import { success, created, notFound, paginated, error } from '../utils/response.js';
 
 export const getBlogs = async (req, res) => {
   try {
-    const {
-      search,
-      sortField = 'createdAt',
-      sortOrder = 'desc',
-      page = 1,
-      pageSize = 10,
-    } = req.query;
-
-    const pageNum = Math.max(1, parseInt(page));
-    const limit = Math.max(1, Math.min(100, parseInt(pageSize)));
-    const offset = (pageNum - 1) * limit;
+    const { pageNum, limit, offset, search, sortField, sortOrder } = parsePagination(req.query);
 
     const orderFn = sortOrder === 'asc' ? asc : desc;
     const sortColumn = blogs[sortField] || blogs.createdAt;
@@ -40,18 +32,10 @@ export const getBlogs = async (req, res) => {
       .limit(limit)
       .offset(offset);
 
-    res.status(200).json({
-      data: rows,
-      pagination: {
-        page: pageNum,
-        pageSize: limit,
-        total,
-        totalPages: Math.ceil(total / limit),
-      },
-    });
-  } catch (error) {
-    console.error('Error fetching blogs:', error);
-    res.status(500).json({ message: 'Failed to fetch blogs' });
+    paginated(res, rows, buildPaginationResponse(total, pageNum, limit));
+  } catch (err) {
+    console.error('Error fetching blogs:', err);
+    error(res, 'Failed to fetch blogs');
   }
 };
 
@@ -65,13 +49,13 @@ export const getBlogById = async (req, res) => {
       .limit(1);
 
     if (!row.length) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return notFound(res, 'Blog');
     }
 
-    res.status(200).json({ data: row[0] });
-  } catch (error) {
-    console.error('Error fetching blog:', error);
-    res.status(500).json({ message: 'Failed to fetch blog' });
+    success(res, row[0]);
+  } catch (err) {
+    console.error('Error fetching blog:', err);
+    error(res, 'Failed to fetch blog');
   }
 };
 
@@ -80,7 +64,7 @@ export const createBlog = async (req, res) => {
     const { title, content, tags, coverImage } = req.body;
 
     if (!title) {
-      return res.status(400).json({ message: 'Title is required' });
+      return error(res, 'Title is required', 400);
     }
 
     const [row] = await db
@@ -93,10 +77,10 @@ export const createBlog = async (req, res) => {
       })
       .returning();
 
-    res.status(201).json({ data: row });
-  } catch (error) {
-    console.error('Error creating blog:', error);
-    res.status(500).json({ message: 'Failed to create blog' });
+    created(res, row);
+  } catch (err) {
+    console.error('Error creating blog:', err);
+    error(res, 'Failed to create blog');
   }
 };
 
@@ -112,7 +96,7 @@ export const updateBlog = async (req, res) => {
       .limit(1);
 
     if (!existing.length) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return notFound(res, 'Blog');
     }
 
     const [row] = await db
@@ -128,10 +112,10 @@ export const updateBlog = async (req, res) => {
       .where(eq(blogs.id, parseInt(id)))
       .returning();
 
-    res.status(200).json({ data: row });
-  } catch (error) {
-    console.error('Error updating blog:', error);
-    res.status(500).json({ message: 'Failed to update blog' });
+    success(res, row);
+  } catch (err) {
+    console.error('Error updating blog:', err);
+    error(res, 'Failed to update blog');
   }
 };
 
@@ -146,14 +130,14 @@ export const deleteBlog = async (req, res) => {
       .limit(1);
 
     if (!existing.length) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return notFound(res, 'Blog');
     }
 
     await db.delete(blogs).where(eq(blogs.id, parseInt(id)));
 
-    res.status(200).json({ message: 'Blog deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting blog:', error);
-    res.status(500).json({ message: 'Failed to delete blog' });
+    success(res, { message: 'Blog deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting blog:', err);
+    error(res, 'Failed to delete blog');
   }
 };

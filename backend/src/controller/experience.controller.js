@@ -1,20 +1,12 @@
 import { db } from '../db/db.js';
 import { experiences } from '../db/schema.js';
 import { eq, like, or, asc, desc, count, sql } from 'drizzle-orm';
+import { parsePagination, buildPaginationResponse } from '../utils/pagination.js';
+import { success, created, notFound, paginated, error } from '../utils/response.js';
 
 export const getExperiences = async (req, res) => {
   try {
-    const {
-      search,
-      sortField = 'createdAt',
-      sortOrder = 'desc',
-      page = 1,
-      pageSize = 10,
-    } = req.query;
-
-    const pageNum = Math.max(1, parseInt(page));
-    const limit = Math.max(1, Math.min(100, parseInt(pageSize)));
-    const offset = (pageNum - 1) * limit;
+    const { pageNum, limit, offset, search, sortField, sortOrder } = parsePagination(req.query);
 
     const orderFn = sortOrder === 'asc' ? asc : desc;
     const sortColumn = experiences[sortField] || experiences.createdAt;
@@ -43,18 +35,10 @@ export const getExperiences = async (req, res) => {
       .limit(limit)
       .offset(offset);
 
-    res.status(200).json({
-      data: rows,
-      pagination: {
-        page: pageNum,
-        pageSize: limit,
-        total,
-        totalPages: Math.ceil(total / limit),
-      },
-    });
-  } catch (error) {
-    console.error('Error fetching experiences:', error);
-    res.status(500).json({ message: 'Failed to fetch experiences' });
+    paginated(res, rows, buildPaginationResponse(total, pageNum, limit));
+  } catch (err) {
+    console.error('Error fetching experiences:', err);
+    error(res, 'Failed to fetch experiences');
   }
 };
 
@@ -68,13 +52,13 @@ export const getExperienceById = async (req, res) => {
       .limit(1);
 
     if (!row.length) {
-      return res.status(404).json({ message: 'Experience not found' });
+      return notFound(res, 'Experience');
     }
 
-    res.status(200).json({ data: row[0] });
-  } catch (error) {
-    console.error('Error fetching experience:', error);
-    res.status(500).json({ message: 'Failed to fetch experience' });
+    success(res, row[0]);
+  } catch (err) {
+    console.error('Error fetching experience:', err);
+    error(res, 'Failed to fetch experience');
   }
 };
 
@@ -83,9 +67,7 @@ export const createExperience = async (req, res) => {
     const { title, subheading, startDate, endDate, description } = req.body;
 
     if (!title || !subheading || !startDate) {
-      return res
-        .status(400)
-        .json({ message: 'Title, subheading, and start date are required' });
+      return error(res, 'Title, subheading, and start date are required', 400);
     }
 
     const [row] = await db
@@ -99,10 +81,10 @@ export const createExperience = async (req, res) => {
       })
       .returning();
 
-    res.status(201).json({ data: row });
-  } catch (error) {
-    console.error('Error creating experience:', error);
-    res.status(500).json({ message: 'Failed to create experience' });
+    created(res, row);
+  } catch (err) {
+    console.error('Error creating experience:', err);
+    error(res, 'Failed to create experience');
   }
 };
 
@@ -118,7 +100,7 @@ export const updateExperience = async (req, res) => {
       .limit(1);
 
     if (!existing.length) {
-      return res.status(404).json({ message: 'Experience not found' });
+      return notFound(res, 'Experience');
     }
 
     const [row] = await db
@@ -134,10 +116,10 @@ export const updateExperience = async (req, res) => {
       .where(eq(experiences.id, parseInt(id)))
       .returning();
 
-    res.status(200).json({ data: row });
-  } catch (error) {
-    console.error('Error updating experience:', error);
-    res.status(500).json({ message: 'Failed to update experience' });
+    success(res, row);
+  } catch (err) {
+    console.error('Error updating experience:', err);
+    error(res, 'Failed to update experience');
   }
 };
 
@@ -152,16 +134,16 @@ export const deleteExperience = async (req, res) => {
       .limit(1);
 
     if (!existing.length) {
-      return res.status(404).json({ message: 'Experience not found' });
+      return notFound(res, 'Experience');
     }
 
     await db
       .delete(experiences)
       .where(eq(experiences.id, parseInt(id)));
 
-    res.status(200).json({ message: 'Experience deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting experience:', error);
-    res.status(500).json({ message: 'Failed to delete experience' });
+    success(res, { message: 'Experience deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting experience:', err);
+    error(res, 'Failed to delete experience');
   }
 };
