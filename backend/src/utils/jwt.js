@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export const createToken = (user) => {
   // 1. Add the secret
@@ -8,10 +8,11 @@ export const createToken = (user) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      verified: true,
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "24h",
+      expiresIn: '24h',
     },
   );
 };
