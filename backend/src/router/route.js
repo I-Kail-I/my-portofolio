@@ -15,12 +15,12 @@ const route = Router();
 
 // Unprotected routes
 route.post('/login', loginController);
+route.get('/experiences', getExperiences);
+route.get('/experiences/:id', getExperienceById);
 
 // Protected routes
 route.get('/profile', verifyToken, profileController);
 route.post('/logout', verifyToken, logoutController);
-route.get('/experiences', verifyToken, getExperiences);
-route.get('/experiences/:id', verifyToken, getExperienceById);
 route.post('/experiences', verifyToken, createExperience);
 route.put('/experiences/:id', verifyToken, updateExperience);
 route.delete('/experiences/:id', verifyToken, deleteExperience);
