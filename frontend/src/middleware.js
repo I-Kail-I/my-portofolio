@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-export function proxy(request) {
+export function middleware(request) {
   const token = request.cookies.get("token")?.value
   const { pathname } = request.nextUrl
 
@@ -11,6 +11,10 @@ export function proxy(request) {
     pathname.startsWith(path),
   )
 
+  if (pathname === "/login" && token) {
+    return NextResponse.redirect(new URL("/admin", request.url))
+  }
+
   if (isProtectedPath && !token) {
     return NextResponse.redirect(new URL("/", request.url))
   }
@@ -18,5 +22,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/", "/admin/:path*"],
+  matcher: ["/login", "/admin/:path*"],
 }
