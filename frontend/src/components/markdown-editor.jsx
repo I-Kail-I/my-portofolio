@@ -85,9 +85,10 @@ export default function MarkdownEditor({ value = "", onChange }) {
   }, [])
 
   function handleToolbar(action) {
-    const textarea = document.activeElement?.tagName === "TEXTAREA"
-      ? document.activeElement
-      : document.querySelector(".markdown-textarea")
+    const textarea =
+      document.activeElement?.tagName === "TEXTAREA"
+        ? document.activeElement
+        : document.querySelector(".markdown-textarea")
 
     if (!textarea) {
       onChange(value + "\n" + action.replace("$SELECTION", "text"))
@@ -100,7 +101,8 @@ export default function MarkdownEditor({ value = "", onChange }) {
     setTimeout(() => {
       textarea.focus()
       textarea.selectionStart = result.cursor
-      textarea.selectionEnd = result.cursor + (action.includes("$SELECTION") ? 0 : 0)
+      textarea.selectionEnd =
+        result.cursor + (action.includes("$SELECTION") ? 0 : 0)
     }, 0)
   }
 
@@ -113,7 +115,7 @@ export default function MarkdownEditor({ value = "", onChange }) {
             key={item.label}
             type="button"
             onClick={() => handleToolbar(item.action)}
-            className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-amber-500"
+            className="text-muted-foreground rounded-md p-1.5 transition-colors hover:bg-white/10 hover:text-amber-500"
             title={item.label}
           >
             <item.icon className="h-4 w-4" />
@@ -186,9 +188,7 @@ export default function MarkdownEditor({ value = "", onChange }) {
                     </code>
                   )
                 }
-                return (
-                  <code className="block">{children}</code>
-                )
+                return <code className="block">{children}</code>
               },
               pre: ({ children }) => (
                 <pre className="mb-3 overflow-x-auto rounded-lg border border-white/10 bg-black/20 p-3 font-mono text-sm last:mb-0">
@@ -217,13 +217,11 @@ export default function MarkdownEditor({ value = "", onChange }) {
                 </a>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="mb-3 border-l-2 border-amber-500/50 pl-4 text-muted-foreground last:mb-0">
+                <blockquote className="text-muted-foreground mb-3 border-l-2 border-amber-500/50 pl-4 last:mb-0">
                   {children}
                 </blockquote>
               ),
-              hr: () => (
-                <hr className="my-4 border-amber-500/20" />
-              ),
+              hr: () => <hr className="my-4 border-amber-500/20" />,
             }}
           >
             {value || "*No content yet*"}
@@ -231,7 +229,7 @@ export default function MarkdownEditor({ value = "", onChange }) {
         </div>
       ) : (
         <textarea
-          className="markdown-textarea min-h-50 w-full resize-y bg-transparent p-4 font-mono text-sm leading-relaxed text-foreground outline-none placeholder:text-muted-foreground"
+          className="markdown-textarea min-h-50 text-foreground placeholder:text-muted-foreground w-full resize-y bg-transparent p-4 font-mono text-sm leading-relaxed outline-none"
           placeholder="Write your markdown here..."
           value={value}
           onChange={(e) => onChange(e.target.value)}
