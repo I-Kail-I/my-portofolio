@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client"
 
 import { useState, useMemo } from "react"
@@ -174,7 +175,7 @@ export default function DataTable({
                   : "Default"}
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="min-w-[8rem] border-white/10 bg-background font-mono">
+            <DropdownMenuContent className="min-w-32 border-white/10 bg-background font-mono">
               <DropdownMenuRadioGroup
                 value={sortField}
                 onValueChange={handleSortField}
@@ -331,7 +332,7 @@ export default function DataTable({
               <button
                 key={page}
                 onClick={() => handlePage(page)}
-                className={`min-w-[2rem] rounded-lg border px-2 py-1 text-xs transition-colors ${
+                className={`min-w-8 rounded-lg border px-2 py-1 text-xs transition-colors ${
                   safePage === page
                     ? "border-amber-500 bg-amber-500/10 text-amber-500"
                     : "border-white/10 hover:border-amber-500/50"

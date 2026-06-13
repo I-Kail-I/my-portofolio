@@ -149,7 +149,7 @@ export default function MarkdownEditor({ value = "", onChange }) {
 
       {/* Editor / Preview */}
       {mode === "preview" ? (
-        <div className="markdown-preview min-h-[200px] overflow-y-auto p-4">
+        <div className="markdown-preview min-h-50 overflow-y-auto p-4">
           <ReactMarkdown
             components={{
               h1: ({ children }) => (
@@ -231,7 +231,7 @@ export default function MarkdownEditor({ value = "", onChange }) {
         </div>
       ) : (
         <textarea
-          className="markdown-textarea min-h-[200px] w-full resize-y bg-transparent p-4 font-mono text-sm leading-relaxed text-foreground outline-none placeholder:text-muted-foreground"
+          className="markdown-textarea min-h-50 w-full resize-y bg-transparent p-4 font-mono text-sm leading-relaxed text-foreground outline-none placeholder:text-muted-foreground"
           placeholder="Write your markdown here..."
           value={value}
           onChange={(e) => onChange(e.target.value)}
