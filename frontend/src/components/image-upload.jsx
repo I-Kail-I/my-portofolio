@@ -18,9 +18,7 @@ export default function ImageUpload({ value, onChange }) {
     try {
       const formData = new FormData()
       formData.append("image", file)
-      const { data } = await axiosInstance.post("/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      const { data } = await axiosInstance.post("/upload", formData)
       onChange(data.url)
     } catch (error) {
       console.error("Failed to upload image:", error)
