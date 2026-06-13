@@ -3,9 +3,10 @@ import jwt from "jsonwebtoken";
 export const createToken = (user) => {
   // 1. Add the secret
   // 2. Return the result
-  jwt.sign(
+  return jwt.sign(
     {
       id: user.id,
+      name: user.name,
       email: user.email,
     },
     process.env.JWT_SECRET,
